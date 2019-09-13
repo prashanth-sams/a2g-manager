@@ -1,32 +1,16 @@
 import * as React from 'react';
 import './App.css';
-// import { BrowserRouter as Link, Router, Switch, Route  } from 'react-router-dom';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { slide as Menu } from 'react-burger-menu';
 import Home from './components/Home/Home';
 import Add from './components/Add/Add';
 import Edit from './components/Edit/Edit';
 import List from './components/List/List';
 
-// function handleClick() {
-//   console.log('aasd')
-// }
-
-import logo from './logo.svg';
-
 class App extends React.Component {
   public render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Ask2God Manager</h1>
-        </header>
-
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
         <Router>
           <div className="container">
             <Menu width={ '60%' }>
@@ -43,7 +27,6 @@ class App extends React.Component {
                 <span> List verse</span>
               </a>
             </Menu>
-
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
               <Link to={'/'} className="navbar-brand">Ask2God</Link>
               <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -70,7 +53,6 @@ class App extends React.Component {
               </div>
             </nav>
             <br/>
-
             <Switch>
               <Route exact={true} path='/' component={Home} />
               <Route path='/create' component={ Add } />
@@ -79,7 +61,6 @@ class App extends React.Component {
             </Switch>
           </div>
         </Router>
-      </div>
     );
   }
 }
