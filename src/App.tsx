@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './App.css';
+import './css/mobile.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { slide as Menu } from 'react-burger-menu';

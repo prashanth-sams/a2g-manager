@@ -27,6 +27,29 @@
   to { transform: rotate(360deg); }
 }
 
+/* Responsiveness */
 @media only screen and (min-width : 769px) {
   .bm-menu-wrap:not(.show), .bm-burger-button:not(.show) {display:none;}
+}
+
+/* Tabs */
+.navbar-light .navbar-nav .nav-link:hover {
+  font-size: 1rem; 
+  transform: perspective(1px) scale3d(1.07,1.07,1);
+  transition: all 0.30s linear;
+  margin-bottom: -3px;
+  border-bottom: 3px solid #969696;
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link.active {
+  color: #5243AA;
+  transform: perspective(1px) scale3d(1.07,1.07,1);
+  margin-bottom: -3px;
+  border-bottom: 3px solid #5243AA;
+}
+
+.nav-item {
+  width:100px;
+  text-align: -webkit-center;
+  text-align: center;
 }
