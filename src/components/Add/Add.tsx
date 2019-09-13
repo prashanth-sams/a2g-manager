@@ -1,17 +1,15 @@
 import * as React from 'react';
-// import {ReduxForm} from "../decorators/ReduxForm";
 
-interface HomeProps {
+interface AddProps {
 
 }
 
-interface HomeState {
+interface AddState {
     name: string;
-  }
+}
 
-// @ReduxForm({form: 'home'})
-class Home extends React.Component<HomeProps, HomeState> {
-    constructor(props: HomeProps) {
+class Add extends React.Component<AddProps, AddState> {
+    constructor(props: AddProps) {
         super(props);
         this.state = {name: 'Everton'};
     }
@@ -20,11 +18,11 @@ class Home extends React.Component<HomeProps, HomeState> {
         return (
           <div className="hello">
             <div className="greeting">
-              Home
+              Add
             </div>
           </div>
         );
     }
 }
 
-export default Home;
+export default Add;

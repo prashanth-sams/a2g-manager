@@ -4,7 +4,10 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import { slide as Menu } from 'react-burger-menu';
-// import Home from './components/Home/Home';
+import Home from './components/Home/Home';
+import Add from './components/Add/Add';
+import Edit from './components/Edit/Edit';
+import List from './components/List/List';
 
 // function handleClick() {
 //   console.log('aasd')
@@ -12,11 +15,6 @@ import { slide as Menu } from 'react-burger-menu';
 
 import logo from './logo.svg';
 
-function Home() {
-  return <h2>Home</h2>;
-}
-
-  
 class App extends React.Component {
   public render() {
     return (
@@ -36,14 +34,14 @@ class App extends React.Component {
                 <i className="fa fa-home"/>
                 <span> Home</span>
               </a>
-              {/* <a id="resp-create" className="menu-item" href="/create">
+              <a id="resp-create" className="menu-item" href="/create">
                 <i className="fa fa-plus"/>
                 <span> Add verse</span>
               </a>
               <a id="resp-index" className="menu-item" href="/index">
                 <i className="fa fa-list"/>
                 <span> List verse</span>
-              </a> */}
+              </a>
             </Menu>
 
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -56,7 +54,7 @@ class App extends React.Component {
                       <span> Home</span>
                     </Link>
                   </li>
-                  {/* <li className="nav-item">
+                  <li className="nav-item">
                     <Link to={'/create'} className="nav-link" id="create">
                       <i className="fa fa-plus"/>
                       <span> Add</span>
@@ -67,7 +65,7 @@ class App extends React.Component {
                       <i className="fa fa-list"/>
                       <span> List</span>
                     </Link>
-                  </li> */}
+                  </li>
                 </ul>
               </div>
             </nav>
@@ -75,9 +73,9 @@ class App extends React.Component {
 
             <Switch>
               <Route exact={true} path='/' component={Home} />
-              {/* <Route path='/create' component={ Create } />
+              <Route path='/create' component={ Add } />
               <Route path='/edit/:id' component={ Edit } />
-              <Route path='/index' component={ Index } /> */}
+              <Route path='/index' component={ List } />
             </Switch>
           </div>
         </Router>
