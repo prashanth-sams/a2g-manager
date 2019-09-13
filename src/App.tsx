@@ -18,11 +18,11 @@ class App extends React.Component {
                 <i className="fa fa-home"/>
                 <span> Home</span>
               </a>
-              <a id="resp-create" className="menu-item" href="/create">
+              <a id="resp-add" className="menu-item" href="/add">
                 <i className="fa fa-plus"/>
                 <span> Add verse</span>
               </a>
-              <a id="resp-index" className="menu-item" href="/index">
+              <a id="resp-list" className="menu-item" href="/list">
                 <i className="fa fa-list"/>
                 <span> List verse</span>
               </a>
@@ -38,13 +38,13 @@ class App extends React.Component {
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link to={'/create'} className="nav-link" id="create">
+                    <Link to={'/add'} className="nav-link" id="add">
                       <i className="fa fa-plus"/>
                       <span> Add</span>
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link to={'/index'} className="nav-link" id="index">
+                    <Link to={'/list'} className="nav-link" id="list">
                       <i className="fa fa-list"/>
                       <span> List</span>
                     </Link>
@@ -55,9 +55,9 @@ class App extends React.Component {
             <br/>
             <Switch>
               <Route exact={true} path='/' component={Home} />
-              <Route path='/create' component={ Add } />
+              <Route path='/add' component={ Add } />
               <Route path='/edit/:id' component={ Edit } />
-              <Route path='/index' component={ List } />
+              <Route path='/list' component={ List } />
             </Switch>
           </div>
         </Router>
