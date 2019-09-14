@@ -3,6 +3,14 @@ import KeywordsProps from '../../interfaces/KeywordsProps.interface'
 import Select, { components } from 'react-select';
 import axios from 'axios';
 import { colourOptions } from './data';
+import './_style.css';
+
+declare module 'react' {
+  interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
+    // extends React's HTMLAttributes
+    align?: string;
+  }
+}
 
 interface KeywordsState {
   error: boolean
@@ -20,12 +28,6 @@ const MultiValueLabel = (props) => {
 export class Add extends React.Component<KeywordsProps, KeywordsState> {
   constructor(props: KeywordsProps) {
     super(props);
-    this.onChangeTagName = this.onChangeTagName.bind(this);
-		this.onChangeBookName = this.onChangeBookName.bind(this);
-		this.onChangeChapterNumber = this.onChangeChapterNumber.bind(this);
-		this.onChangeVerseNumber = this.onChangeVerseNumber.bind(this);
-		this.onChangeVerseContext = this.onChangeVerseContext.bind(this);
-		this.onSubmit= this.onSubmit.bind(this);
 
     this.state = {
       error: false,
@@ -65,11 +67,14 @@ export class Add extends React.Component<KeywordsProps, KeywordsState> {
 		console.log(`action: ${actionMeta.action}`);
 		console.groupEnd();
 
-		const values = [];
-		for (let i = 0, l = newValue.length; i < l; i++) {
-			values.push(newValue[i].value);
-		}
-		
+    const values = [];
+    
+    if (newValue != null) {
+      for (let i = 0, l = newValue.length; i < l; i++) {
+        values.push(newValue[i].value);
+      }
+    }
+
 		this.setState({
 			tag_name: values
 		});
@@ -103,7 +108,7 @@ export class Add extends React.Component<KeywordsProps, KeywordsState> {
     // const {tag_name, book_name} = this.props;
     return (
       <div style={{marginTop: 10}}>
-				<h1>Add Verse</h1>
+				<h3 align="center" className="header-top">Add Verse</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group" style={{ fontSize: '0.9rem' }}>
             <Select

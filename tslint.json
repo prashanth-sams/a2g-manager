@@ -15,7 +15,8 @@
     "interface-name" : [true, "never-prefix"],
     "no-empty-interface": false,
     "no-console": false,
-    "object-literal-sort-keys": false
+    "object-literal-sort-keys": false,
+    "no-debugger": false
   },
   "jsRules": {
     "object-literal-sort-keys": false
