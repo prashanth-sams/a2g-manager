@@ -94,7 +94,7 @@ export class Edit extends React.Component<EditProps & RouteComponentProps, EditS
     axios.post('/update/'+(this.props.match.params as any).id, obj)
         .then(res => console.log(res.data));
 
-    this.props.history.push('/index');
+    this.props.history.push('/list');
   }
 
 
