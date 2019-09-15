@@ -16,9 +16,11 @@
     "no-empty-interface": false,
     "no-console": false,
     "object-literal-sort-keys": false,
-    "no-debugger": false
+    "no-debugger": false,
+    "jsx-no-lambda": false
   },
   "jsRules": {
-    "object-literal-sort-keys": false
+    "object-literal-sort-keys": false,
+    "no-console": false
   }
 }

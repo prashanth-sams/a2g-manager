@@ -1,5 +1,5 @@
-import * as React from 'react'
-import KeywordsProps from '../../interfaces/KeywordsProps.interface'
+import * as React from 'react';
+import KeywordsProps from '../../interfaces/KeywordsProps.interface';
 import Select, { components } from 'react-select';
 import axios from 'axios';
 import { colourOptions } from './data';
