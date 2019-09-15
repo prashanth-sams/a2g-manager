@@ -4,13 +4,6 @@ import axios from 'axios';
 import './_style.css';
 import { RouteComponentProps } from 'react-router';
 
-declare module 'react' {
-  interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
-    // extends React's HTMLAttributes
-    align?: string;
-  }
-}
-
 interface EditState {
   error: boolean
   tag_name: string[],
@@ -101,7 +94,7 @@ export class Edit extends React.Component<EditProps & RouteComponentProps, EditS
   public render() {
     return (
       <div style={{ marginTop: 10 }}>
-        <h3 align="center">Update Verse</h3>
+        <h3 className="header-top">Update Verse</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>Tags: </label>

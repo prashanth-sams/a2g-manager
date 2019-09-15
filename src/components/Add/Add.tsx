@@ -108,7 +108,7 @@ export class Add extends React.Component<KeywordsProps, KeywordsState> {
     // const {tag_name, book_name} = this.props;
     return (
       <div style={{marginTop: 10}}>
-				<h3 align="center" className="header-top">Add Verse</h3>
+				<h3 className="header-top">Add Verse</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group" style={{ fontSize: '0.9rem' }}>
             <Select
