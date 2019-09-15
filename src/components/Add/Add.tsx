@@ -5,13 +5,6 @@ import axios from 'axios';
 import { colourOptions } from './data';
 import './_style.css';
 
-declare module 'react' {
-  interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
-    // extends React's HTMLAttributes
-    align?: string;
-  }
-}
-
 interface KeywordsState {
   error: boolean
   tag_name: string[],
