@@ -39,7 +39,7 @@ class List extends React.Component<ListProps, ListState> {
     public render() {
         return (
           <div>				
-            <h3 align="center" className="header-top">Verse List</h3>
+            <h3 className="header-top">Verse List</h3>
             <table className="table table-striped" style={{ marginTop: 20 }}>
               <thead>
                 <tr>

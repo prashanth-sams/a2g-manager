@@ -5,13 +5,6 @@ import axios from 'axios';
 import { colourOptions } from './data';
 import './_style.css';
 
-declare module 'react' {
-  interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
-    // extends React's HTMLAttributes
-    align?: string;
-  }
-}
-
 interface KeywordsState {
   error: boolean
   tag_name: string[],
@@ -108,7 +101,7 @@ export class Add extends React.Component<KeywordsProps, KeywordsState> {
     // const {tag_name, book_name} = this.props;
     return (
       <div style={{marginTop: 10}}>
-				<h3 align="center" className="header-top">Add Verse</h3>
+        <h3 className="header-top">Add Verse</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group" style={{ fontSize: '0.9rem' }}>
             <Select
