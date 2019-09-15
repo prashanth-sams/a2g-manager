@@ -26,11 +26,11 @@ export class Edit extends React.Component<EditProps & RouteComponentProps, EditS
 
     this.state = {
       error: false,
-			tag_name : [],
-			book_name : '',
-			chapter_number: null,
-			verse_number: '',
-			verse_context: ''
+      tag_name : [],
+      book_name : '',
+      chapter_number: null,
+      verse_number: '',
+      verse_context: ''
     };
     axios.defaults.baseURL = 'http://localhost:4000/keyword';
   }
