@@ -1,16 +1,16 @@
 import * as React from 'react';
-import ListProps from '../../interfaces/ListProps.interface';
+import ListKeywordsProps from '../../interfaces/ListKeywordsProps.interface';
 import axios from 'axios';
 import TableRow from './TableRow';
 import './_style.css';
 
-interface ListState {
+interface ListKeywordsState {
     manager: string[];
 }
 
-class List extends React.Component<ListProps, ListState> {
+class ListKeywords extends React.Component<ListKeywordsProps, ListKeywordsState> {
 
-    constructor(props: ListProps) {
+    constructor(props: ListKeywordsProps) {
         super(props);
         this.state = {manager: []};
     }
@@ -59,4 +59,4 @@ class List extends React.Component<ListProps, ListState> {
     }
 }
 
-export default List;
+export default ListKeywords;

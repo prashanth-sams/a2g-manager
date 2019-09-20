@@ -5,9 +5,9 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { slide as Menu } from 'react-burger-menu';
 import Home from './components/Home/Home';
-import Add from './components/Add/Add';
-import Edit from './components/Edit/Edit';
-import List from './components/List/List';
+import AddKeywords from './components/AddKeywords/AddKeywords';
+import EditKeywords from './components/EditKeywords/EditKeywords';
+import ListKeywords from './components/ListKeywords/ListKeywords';
 
 class App extends React.Component {
   public render() {
@@ -29,25 +29,19 @@ class App extends React.Component {
               </a>
             </Menu>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-              <Link to={'/'} className="navbar-brand">Ask2God</Link>
+              <Link to={'/'} className="navbar-brand" id="home">Ask2God</Link>
               <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto" id="header">
                   <li className="nav-item">
-                    <Link to={'/'} className="nav-link" id="home">
-                      <i className="fa fa-home"/>
-                      <span> Home</span>
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link to={'/add'} className="nav-link" id="add">
+                    <Link to={'/add/keywords'} className="nav-link" id="add">
                       <i className="fa fa-plus"/>
-                      <span> Add</span>
+                      <span style={{ fontSize: '0.9rem' }}> Add Search</span>
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link to={'/list'} className="nav-link" id="list">
+                    <Link to={'/list/keywords'} className="nav-link" id="list">
                       <i className="fa fa-list"/>
-                      <span> List</span>
+                      <span style={{ fontSize: '0.9rem' }}> List Search</span>
                     </Link>
                   </li>
                 </ul>
@@ -56,9 +50,9 @@ class App extends React.Component {
             <br/>
             <Switch>
               <Route exact={true} path='/' component={Home} />
-              <Route path='/add' component={ Add } />
-              <Route path='/edit/:id' component={ Edit } />
-              <Route path='/list' component={ List } />
+              <Route path='/add/keywords' component={ AddKeywords } />
+              <Route path='/edit/keywords/:id' component={ EditKeywords } />
+              <Route path='/list/keywords' component={ ListKeywords } />
             </Switch>
           </div>
         </Router>

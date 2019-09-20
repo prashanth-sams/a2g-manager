@@ -1,10 +1,10 @@
 import * as React from 'react'
-import EditProps from '../../interfaces/EditProps.interface'
+import EditKeywordsProps from '../../interfaces/EditKeywordsProps.interface'
 import axios from 'axios';
 import './_style.css';
 import { RouteComponentProps } from 'react-router';
 
-interface EditState {
+interface EditKeywordsState {
   error: boolean
   tag_name: string[],
   book_name: string,
@@ -13,8 +13,8 @@ interface EditState {
   verse_context: string
 }
 
-export class Edit extends React.Component<EditProps & RouteComponentProps, EditState> {
-  constructor(props: EditProps & RouteComponentProps) {
+export class EditKeywords extends React.Component<EditKeywordsProps & RouteComponentProps, EditKeywordsState> {
+  constructor(props: EditKeywordsProps & RouteComponentProps) {
     super(props);
 
     this.state = {
@@ -87,7 +87,7 @@ export class Edit extends React.Component<EditProps & RouteComponentProps, EditS
     axios.post('/update/'+(this.props.match.params as any).id, obj)
         .then(res => console.log(res.data));
 
-    this.props.history.push('/list');
+    this.props.history.push('/list/keywords');
   }
 
 
@@ -145,4 +145,4 @@ export class Edit extends React.Component<EditProps & RouteComponentProps, EditS
   }
 }
 
-export default Edit
+export default EditKeywords

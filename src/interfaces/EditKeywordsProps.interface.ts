@@ -1,4 +1,4 @@
-export default interface KeywordsProps{
+export default interface EditKeywordsProps{
     tag_name: string[],
     book_name: string,
     chapter_number?: number,
