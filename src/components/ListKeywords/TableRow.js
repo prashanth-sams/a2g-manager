@@ -24,7 +24,7 @@ class TableRow extends Component {
     super(props);
     this.delete = this.delete.bind(this);
     
-    axios.defaults.baseURL = 'http://localhost:4000/keyword';
+    axios.defaults.baseURL = 'http://localhost:4000/keywords';
   }
 
   delete(){
