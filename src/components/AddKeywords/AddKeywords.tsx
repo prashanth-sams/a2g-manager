@@ -1,11 +1,11 @@
 import * as React from 'react';
-import KeywordsProps from '../../interfaces/KeywordsProps.interface';
+import AddKeywordsProps from '../../interfaces/AddKeywordsProps.interface';
 import Select, { components } from 'react-select';
 import axios from 'axios';
 import { colourOptions } from './data';
 import './_style.css';
 
-interface KeywordsState {
+interface AddKeywordsState {
   error: boolean
   tag_name: string[],
   book_name: string,
@@ -18,8 +18,8 @@ const MultiValueLabel = (props) => {
 	return (<components.MultiValueLabel {...props}/>);
 };
 
-export class Add extends React.Component<KeywordsProps, KeywordsState> {
-  constructor(props: KeywordsProps) {
+export class AddKeywords extends React.Component<AddKeywordsProps, AddKeywordsState> {
+  constructor(props: AddKeywordsProps) {
     super(props);
 
     this.state = {
@@ -101,7 +101,7 @@ export class Add extends React.Component<KeywordsProps, KeywordsState> {
     // const {tag_name, book_name} = this.props;
     return (
       <div style={{marginTop: 10}}>
-        <h3 className="header-top">Add Verse</h3>
+        <h3 className="header-top">Bible Keywords</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group" style={{ fontSize: '0.9rem' }}>
             <Select
@@ -161,4 +161,4 @@ export class Add extends React.Component<KeywordsProps, KeywordsState> {
   }
 }
 
-export default Add
+export default AddKeywords
