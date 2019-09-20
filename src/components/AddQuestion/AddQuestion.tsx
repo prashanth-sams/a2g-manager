@@ -30,7 +30,7 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
 			verse_number: '',
 			verse_context: ''
     };
-    axios.defaults.baseURL = 'http://localhost:4000/keyword';
+    axios.defaults.baseURL = 'http://localhost:4000/keywords';
   }
 
   public onSubmit = () => {
