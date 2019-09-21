@@ -8,8 +8,11 @@ import './_style.css';
 interface AddQuestionState {
   error: boolean
   tag_name: string[],
-  book_name: string,
-  chapter_number: number,
+  title: string,
+  reference: string,
+  bible: [],
+  book_name : string,
+  chapter_number: null,
   verse_number: string,
   verse_context: string
 }
@@ -24,24 +27,31 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
 
     this.state = {
       error: false,
-			tag_name : [],
-			book_name : '',
-			chapter_number: null,
-			verse_number: '',
-			verse_context: ''
+      tag_name : [],
+      title : '',
+      reference : '',
+      bible: [],
+      book_name : '',
+      chapter_number: null,
+      verse_number: '',
+      verse_context: ''
     };
-    axios.defaults.baseURL = 'http://localhost:4000/keywords';
+    axios.defaults.baseURL = 'http://localhost:4000/question';
   }
 
   public onSubmit = () => {
-    console.log(`The values are ${this.state.tag_name}, ${this.state.book_name}, ${this.state.chapter_number}, ${this.state.verse_number}, and ${this.state.verse_context}`)
-    
+    console.log(`The values are ${this.state.tag_name}, ${this.state.title}, ${this.state.reference}, ${this.state.book_name}, ${this.state.chapter_number}, ${this.state.verse_number}, and ${this.state.verse_context}`)
+
     const obj = {
-			tag_name : this.state.tag_name,
-			book_name : this.state.book_name,
-			chapter_number : this.state.chapter_number,
-			verse_number : this.state.verse_number,
-			verse_context : this.state.verse_context
+      tag_name : this.state.tag_name,
+      title : this.state.title,
+      reference : this.state.reference,
+      bible : [{
+        book_name : this.state.book_name,
+        chapter_number : this.state.chapter_number,
+        verse_number : this.state.verse_number,
+        verse_context : this.state.verse_context
+      }]
     };
     
     axios.post('/add', obj)
@@ -73,6 +83,18 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
 		});
   }
 
+  public onChangeTitle = (e) => {
+		this.setState({
+			title : e.target.value
+		});
+  }
+
+  public onChangeReference = (e) => {
+		this.setState({
+			reference : e.target.value
+		});
+  }
+  
   public onChangeBookName = (e) => {
 		this.setState({
 			book_name : e.target.value
@@ -103,57 +125,80 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
       <div style={{marginTop: 10}}>
         <h3 className="header-top">Bible Question</h3>
         <form onSubmit={this.onSubmit}>
-          <div className="form-group" style={{ fontSize: '0.9rem' }}>
-            <Select
-              name="tags"
-              isMulti={true}
-              onChange={this.onChangeTagName}
-              options={colourOptions}
-              placeholder="Tags [eg., love]"
-              autoFocus={true}
-              components={{ MultiValueLabel }}
-              styles={{ multiValueLabel: (base) => ({ ...base, backgroundColor: colourOptions[2].color, color: 'white' }) }}
-              required={true}
-            />
+          <div className="question-top-container">
+            <div className="form-group" style={{ fontSize: '0.9rem' }}>
+              <Select
+                name="tags"
+                isMulti={true}
+                onChange={this.onChangeTagName}
+                options={colourOptions}
+                placeholder="Tags [eg., love]"
+                autoFocus={true}
+                components={{ MultiValueLabel }}
+                styles={{ multiValueLabel: (base) => ({ ...base, backgroundColor: colourOptions[2].color, color: 'white' }) }}
+                required={true}
+              />
+            </div>
+            <div className="form-group">
+              <textarea id="form7" className="md-textarea form-control" rows={2}
+                name="title"
+                onChange={this.onChangeTitle}
+                value={this.state.title}
+                placeholder="Question [eg., Who is Jesus?]"
+              />
+            </div>
+            <div className="form-group">
+                <input type="text" className="form-control"
+                  name="reference"
+                  placeholder="Reference ID [eg., jesus-10]"
+                  value={this.state.reference}
+                  onChange={this.onChangeReference}
+                  required={true}
+                />
+              </div>
           </div>
-          <div className="form-group">
-            <input type="text" className="form-control"
-              name="book"
-              placeholder="Book [eg., matthew]"
-              value={this.state.book_name}
-              onChange={this.onChangeBookName}
-              required={true}
-            />
+          <div className="bible-outer-container">
+            <button type="button" className="bible-label">Bible <span className="badge">1</span></button>
+            <div className="bible-container">
+              <div className="form-group">
+                <input type="text" className="form-control"
+                  name="book"
+                  placeholder="Book [eg., matthew]"
+                  value={this.state.book_name}
+                  onChange={this.onChangeBookName}
+                  required={true}
+                />
+              </div>
+              <div className="form-group">
+                <input type="text" className="form-control"
+                  name="chapter"
+                  placeholder="Chapter"
+                  value={this.state.chapter_number || ''}
+                  onChange={this.onChangeChapterNumber}
+                  required={true}
+                />
+              </div>
+              <div className="form-group">
+                <input type="text" className="form-control"
+                  name="verse number"
+                  placeholder="Verse number"
+                  value={this.state.verse_number}
+                  onChange={this.onChangeVerseNumber}
+                  required={true}
+                />
+              </div>
+              <div className="form-group">
+                <textarea id="form7" className="md-textarea form-control" rows={4}
+                  name="verse"
+                  onChange={this.onChangeVerseContext}
+                  value={this.state.verse_context}
+                  placeholder="Verse context"
+                />
+              </div>
+            </div>  
           </div>
-          <div className="form-group">
-            <input type="text" className="form-control"
-              name="chapter"
-              placeholder="Chapter"
-              value={this.state.chapter_number || ''}
-              onChange={this.onChangeChapterNumber}
-              required={true}
-            />
-          </div>
-          <div className="form-group">
-            <input type="text" className="form-control"
-              name="verse number"
-              placeholder="Verse number"
-              value={this.state.verse_number}
-              onChange={this.onChangeVerseNumber}
-              required={true}
-            />
-          </div>
-          <div className="form-group">
-            <input type="text" className="form-control"
-              name="verse"
-              placeholder="Verse context"
-              value={this.state.verse_context}
-              onChange={this.onChangeVerseContext}
-              required={true}
-            />
-          </div>
-          <div className="form-group">
-            <input type="submit" value="Add Verse" className="btn btn-primary"/>
+          <div className="form-group" id="submit-question-container">
+            <input type="submit" value="Add Question" className="btn btn-primary" id="submit" />
           </div>
         </form>
       </div>

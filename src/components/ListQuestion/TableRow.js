@@ -40,17 +40,14 @@ class TableRow extends Component {
     return (
         <tr>
           <td>
+            {this.props.obj.reference}
+          </td>
+          <td>
             {this.props.obj.tag_name}
           </td>
           <td>
-            {this.props.obj.book_name}
+            {this.props.obj.title}
           </td>
-          <td>
-            {this.props.obj.chapter_number}: {this.props.obj.verse_number}
-          </td>
-          <Ellipsis>
-            {this.props.obj.verse_context}
-          </Ellipsis>
           <td>
             <Link to={"/edit/question/"+this.props.obj._id} className="btn btn-primary">Edit</Link>
           </td>

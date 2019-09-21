@@ -153,7 +153,7 @@ export class AddKeywords extends React.Component<AddKeywordsProps, AddKeywordsSt
             />
           </div>
           <div className="form-group">
-            <input type="submit" value="Add Verse" className="btn btn-primary"/>
+            <input type="submit" value="Add Verse" className="btn btn-primary" id="submit"/>
           </div>
         </form>
       </div>

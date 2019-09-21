@@ -137,7 +137,7 @@ export class EditKeywords extends React.Component<EditKeywordsProps & RouteCompo
             />
           </div>
           <div className="form-group">
-            <input type="submit" value="Update Verse" className="btn btn-primary" />
+            <input type="submit" value="Update Verse" className="btn btn-primary" id="submit"/>
           </div>
         </form>
       </div>
