@@ -23,25 +23,25 @@ class App extends React.Component {
                   <li className="nav-item">
                     <Link to={'/add/keywords'} className="nav-link" id="add">
                       <i className="fa fa-plus"/>
-                      <span style={{ fontSize: '0.9rem' }}> Add Search</span>
+                      <span style={{ fontSize: '0.9rem' }}> Search</span>
                     </Link>
                   </li>
                   <li className="nav-item">
                     <Link to={'/list/keywords'} className="nav-link" id="list">
                       <i className="fa fa-list"/>
-                      <span style={{ fontSize: '0.9rem' }}> List Search</span>
+                      <span style={{ fontSize: '0.9rem' }}> Search</span>
                     </Link>
                   </li>
                   <li className="nav-item">
                     <Link to={'/add/question'} className="nav-link" id="add">
                       <i className="fa fa-plus"/>
-                      <span style={{ fontSize: '0.9rem' }}> Add Q&A</span>
+                      <span style={{ fontSize: '0.9rem' }}> Q&A</span>
                     </Link>
                   </li>
                   <li className="nav-item">
                     <Link to={'/list/question'} className="nav-link" id="list">
                       <i className="fa fa-list"/>
-                      <span style={{ fontSize: '0.9rem' }}> List Q&A</span>
+                      <span style={{ fontSize: '0.9rem' }}> Q&A</span>
                     </Link>
                   </li>
                 </ul>

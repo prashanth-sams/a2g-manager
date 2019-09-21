@@ -2,3 +2,47 @@
     margin-bottom: 2.5rem;
     text-align: center;
 }
+
+.bible-container {
+    padding-right: 3%;
+    padding-left: 3%;
+    background-color: #f7f7f7;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.question-top-container {
+    margin-right: 50%;
+}
+
+#submit-question-container {
+    padding-top: 2%;
+}
+
+#submit {
+    background-color: #5243AA;
+    border-color: #5243AA;
+}
+
+.bible-label {
+    color: #fff;
+    background-color: #716f79;
+    border-color: #716f79;
+    padding: .375rem .75rem;
+    border-radius: .25rem;
+    pointer-events: none;
+    border-radius: 18px 18px 0 18px;
+}
+
+.badge {
+    background-color: crimson;
+}
+
+.bible-outer-container {
+    background-color: #f7f7f7;
+    padding-right: 3%;
+    padding-left: 3%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    margin-right: 50%;
+}

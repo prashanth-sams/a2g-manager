@@ -43,10 +43,9 @@ class ListQuestion extends React.Component<ListQuestionProps, ListQuestionState>
             <table className="table table-striped" style={{ marginTop: 20 }}>
               <thead>
                 <tr>
+                  <th>ID</th>
                   <th>Tags</th>
-                  <th>Book</th>
-                  <th>Chapter</th>
-                  <th>Verse</th>
+                  <th>Title</th>
                   <th colSpan={2}>Action</th>
                 </tr>
               </thead>
