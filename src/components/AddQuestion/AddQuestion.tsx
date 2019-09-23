@@ -4,6 +4,16 @@ import Select, { components } from 'react-select';
 import axios from 'axios';
 import { colourOptions } from './data';
 import './_style.css';
+import AddBibleSection from './AddBibleSection';
+
+const AddBibleWrapper = props => (
+  <div>
+    {props.children}
+    <button type="button" className="btn btn-primary" id="add-row" onClick={props.addBible}>
+      <i className="fa fa-plus" />
+    </button>    
+  </div>
+);
 
 interface AddQuestionState {
   error: boolean
@@ -14,7 +24,8 @@ interface AddQuestionState {
   book_name : string,
   chapter_number: null,
   verse_number: string,
-  verse_context: string
+  verse_context: string,
+  numBible: number
 }
 
 const MultiValueLabel = (props) => {
@@ -34,7 +45,8 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
       book_name : '',
       chapter_number: null,
       verse_number: '',
-      verse_context: ''
+      verse_context: '',
+      numBible: 0
     };
     axios.defaults.baseURL = 'http://localhost:4000/question';
   }
@@ -117,9 +129,22 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
 		this.setState({
 			verse_context : e.target.value
 		});
-	}
+  }
+
+  public onAddBible = () => {
+    this.setState({
+      numBible: this.state.numBible + 1
+    });
+  }
 
   public render() {
+    const children = [];
+
+    for (let i = 0; i < this.state.numBible; i += 1) {
+      // children.push(<AddBible key={i} number={i}/>);
+      children.push(<AddBibleSection key={i} />);
+    };
+
     // const {tag_name, book_name} = this.props;
     return (
       <div style={{marginTop: 10}}>
@@ -158,7 +183,7 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
               </div>
           </div>
           <div className="bible-outer-container">
-            <button type="button" className="bible-label">Bible <span className="badge">1</span></button>
+            <button type="button" className="bible-label">Add Bible <span className="badge">1</span></button>
             <div className="bible-container">
               <div className="form-group">
                 <input type="text" className="form-control"
@@ -195,7 +220,12 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
                   placeholder="Verse context"
                 />
               </div>
-            </div>  
+            </div>
+            
+            <AddBibleWrapper addBible={this.onAddBible}>
+              {children}
+            </AddBibleWrapper>
+
           </div>
           <div className="form-group" id="submit-question-container">
             <input type="submit" value="Add Question" className="btn btn-primary" id="submit" />
