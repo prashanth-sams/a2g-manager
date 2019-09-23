@@ -31,7 +31,7 @@
     padding: .375rem .75rem;
     border-radius: .25rem;
     pointer-events: none;
-    border-radius: 18px 18px 0 18px;
+    /* border-radius: 18px 18px 0 18px; */
 }
 
 .badge {
@@ -45,4 +45,10 @@
     padding-top: 3%;
     padding-bottom: 3%;
     margin-right: 50%;
+}
+
+#add-row {
+    margin-left: 90%;
+    background-color: #5243AA;
+    border-color: #5243AA;
 }
