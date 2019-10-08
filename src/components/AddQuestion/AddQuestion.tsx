@@ -6,17 +6,17 @@ import { colourOptions } from './data';
 import './_style.css';
 import AddBibleSection from './AddBibleSection';
 
-const AddBibleWrapper = props => (
+const AddBibleWrapper = (props) => (
   <div>
     {props.children}
-    <button type="button" className="btn btn-primary" id="add-row" onClick={props.addBible}>
+    <button type="button" className="btn btn-primary" id="add-row" onClick={props.onClickAdd}>
       <i className="fa fa-plus" />
-    </button>    
+    </button> 
   </div>
 );
 
 interface AddQuestionState {
-  error: boolean
+  error: boolean,
   tag_name: string[],
   title: string,
   reference: string,
@@ -25,7 +25,7 @@ interface AddQuestionState {
   chapter_number: null,
   verse_number: string,
   verse_context: string,
-  numBible: number
+  bible_count: number
 }
 
 const MultiValueLabel = (props) => {
@@ -33,6 +33,7 @@ const MultiValueLabel = (props) => {
 };
 
 export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionState> {
+  public stepInput: React.RefObject<HTMLInputElement>;
   constructor(props: AddQuestionProps) {
     super(props);
 
@@ -46,9 +47,23 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
       chapter_number: null,
       verse_number: '',
       verse_context: '',
-      numBible: 0
+      bible_count: 0
     };
+    
+    this.stepInput = React.createRef();
+
     axios.defaults.baseURL = 'http://localhost:4000/question';
+  }
+
+  public componentDidMount = () => {
+    this.stepInput.current.focus();
+  }
+
+  public componentDidUpdate = () => {
+    this.stepInput.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
   }
 
   public onSubmit = () => {
@@ -128,24 +143,23 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
   public onChangeVerseContext = (e) => {
 		this.setState({
 			verse_context : e.target.value
-		});
+    });
   }
 
-  public onAddBible = () => {
+  public onAddBible = (e) => {
     this.setState({
-      numBible: this.state.numBible + 1
+      bible_count: this.state.bible_count + 1
     });
   }
 
   public render() {
-    const children = [];
+    const children = [];  
 
-    for (let i = 0; i < this.state.numBible; i += 1) {
-      // children.push(<AddBible key={i} number={i}/>);
-      children.push(<AddBibleSection key={i} />);
+    for (let i = 0; i < this.state.bible_count; i += 1) {
+      children.push(<AddBibleSection key={i}
+      />);
     };
 
-    // const {tag_name, book_name} = this.props;
     return (
       <div style={{marginTop: 10}}>
         <h3 className="header-top">Bible Question</h3>
@@ -183,7 +197,7 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
               </div>
           </div>
           <div className="bible-outer-container">
-            <button type="button" className="bible-label">Add Bible <span className="badge">1</span></button>
+            <button type="button" className="bible-label">Add Bible <span className="badge">{this.state.bible_count + 1}</span></button>
             <div className="bible-container">
               <div className="form-group">
                 <input type="text" className="form-control"
@@ -222,13 +236,13 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
               </div>
             </div>
             
-            <AddBibleWrapper addBible={this.onAddBible}>
+            <AddBibleWrapper onClickAdd={this.onAddBible} >
               {children}
             </AddBibleWrapper>
 
           </div>
           <div className="form-group" id="submit-question-container">
-            <input type="submit" value="Add Question" className="btn btn-primary" id="submit" />
+            <input type="submit" value="Add Question" className="btn btn-primary" id="submit" ref={this.stepInput}/>
           </div>
         </form>
       </div>
