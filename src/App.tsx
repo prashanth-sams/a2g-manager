@@ -10,6 +10,10 @@ import ListKeywords from './components/ListKeywords/ListKeywords';
 import AddQuestion from './components/AddQuestion/AddQuestion';
 import EditQuestion from './components/EditQuestion/EditQuestion';
 import ListQuestion from './components/ListQuestion/ListQuestion';
+import PageNotFound from './components/PageNotFound/PageNotFound';
+import AddRevelation from './components/Revelation/AddRevelation/AddRevelation';
+// import EditRevelation from './components/EditRevelation/EditRevelation';
+// import ListRevelation from './components/ListRevelation/ListRevelation';
 
 class App extends React.Component {
   public render() {
@@ -44,6 +48,12 @@ class App extends React.Component {
                       <span style={{ fontSize: '0.9rem' }}> Q&A</span>
                     </Link>
                   </li>
+                  <li className="nav-item">
+                    <Link to={'/add/revelation'} className="nav-link" id="add">
+                      <i className="fa fa-plus"/>
+                      <span style={{ fontSize: '0.9rem' }}> A.D</span>
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </nav>
@@ -56,6 +66,10 @@ class App extends React.Component {
               <Route path='/add/question' component={ AddQuestion } />
               <Route path='/edit/question/:id' component={ EditQuestion } />
               <Route path='/list/question' component={ ListQuestion } />
+              <Route path='/add/revelation' component={ AddRevelation } />
+              {/* <Route path='/edit/revelation/:id' component={ EditRevelation } />
+              <Route path='/list/revelation' component={ ListRevelation } /> */}
+              <Route component={ PageNotFound } />
             </Switch>
           </div>
         </Router>

@@ -5,13 +5,17 @@ import axios from 'axios';
 import { colourOptions } from './data';
 import './_style.css';
 import AddBibleSection from './AddBibleSection';
+import { connect } from "react-redux";
+import { startTagname, startQuestion, startReference } from "../../actions/questiondetails";
 
 const AddBibleWrapper = (props) => (
   <div>
-    {props.children}
-    <button type="button" className="btn btn-primary" id="add-row" onClick={props.onClickAdd}>
-      <i className="fa fa-plus" />
-    </button> 
+      <div>
+        {props.children}
+        <button type="button" className="btn btn-primary" id="add-row" onClick={props.onClickAdd}>
+          <i className="fa fa-plus" />
+        </button>
+      </div>
   </div>
 );
 
@@ -54,7 +58,13 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
 
     axios.defaults.baseURL = 'http://localhost:4000/question';
   }
-
+  
+  public onAddBible = (e) => {    
+    this.setState({
+      bible_count: this.state.bible_count + 1
+    });
+  }
+  
   public componentDidMount = () => {
     this.stepInput.current.focus();
   }
@@ -66,19 +76,14 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
     });
   }
 
-  public onSubmit = () => {
-    console.log(`The values are ${this.state.tag_name}, ${this.state.title}, ${this.state.reference}, ${this.state.book_name}, ${this.state.chapter_number}, ${this.state.verse_number}, and ${this.state.verse_context}`)
+  public onSubmit = (e) => {
+    e.preventDefault();
 
     const obj = {
-      tag_name : this.state.tag_name,
-      title : this.state.title,
-      reference : this.state.reference,
-      bible : [{
-        book_name : this.state.book_name,
-        chapter_number : this.state.chapter_number,
-        verse_number : this.state.verse_number,
-        verse_context : this.state.verse_context
-      }]
+      tag_name : this.props.questiondetails.tagname.tagname,
+      title : this.props.questiondetails.question.title,
+      reference : this.props.questiondetails.reference.reference,
+      bible : this.props.biblelist
     };
     
     axios.post('/add', obj)
@@ -87,7 +92,8 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
           this.setState({ error: true});
           return;
         }
-				console.log(res.data)
+        console.log(res.data)
+        alert('added question!')
 			});
   }
 
@@ -107,57 +113,29 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
 
 		this.setState({
 			tag_name: values
-		});
+    });
+    this.props.startTagname(values);
   }
 
   public onChangeTitle = (e) => {
 		this.setState({
 			title : e.target.value
-		});
+    });
+    this.props.startQuestion(e.target.value);
   }
 
   public onChangeReference = (e) => {
 		this.setState({
 			reference : e.target.value
-		});
-  }
-  
-  public onChangeBookName = (e) => {
-		this.setState({
-			book_name : e.target.value
-		});
-  }
-  
-  public onChangeChapterNumber = (e) => {
-		this.setState({
-			chapter_number : e.target.value
-		});
-  }
-  
-  public onChangeVerseNumber = (e) => {
-		this.setState({
-			verse_number : e.target.value
-		});
-  }
-  
-  public onChangeVerseContext = (e) => {
-		this.setState({
-			verse_context : e.target.value
     });
-  }
-
-  public onAddBible = (e) => {
-    this.setState({
-      bible_count: this.state.bible_count + 1
-    });
+    this.props.startReference(e.target.value);
   }
 
   public render() {
-    const children = [];  
-
+    const children = [];
+    
     for (let i = 0; i < this.state.bible_count; i += 1) {
-      children.push(<AddBibleSection key={i}
-      />);
+      children.push(<AddBibleSection key={i}/>);
     };
 
     return (
@@ -197,49 +175,9 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
               </div>
           </div>
           <div className="bible-outer-container">
-            <button type="button" className="bible-label">Add Bible <span className="badge">{this.state.bible_count + 1}</span></button>
-            <div className="bible-container">
-              <div className="form-group">
-                <input type="text" className="form-control"
-                  name="book"
-                  placeholder="Book [eg., matthew]"
-                  value={this.state.book_name}
-                  onChange={this.onChangeBookName}
-                  required={true}
-                />
-              </div>
-              <div className="form-group">
-                <input type="text" className="form-control"
-                  name="chapter"
-                  placeholder="Chapter"
-                  value={this.state.chapter_number || ''}
-                  onChange={this.onChangeChapterNumber}
-                  required={true}
-                />
-              </div>
-              <div className="form-group">
-                <input type="text" className="form-control"
-                  name="verse number"
-                  placeholder="Verse number"
-                  value={this.state.verse_number}
-                  onChange={this.onChangeVerseNumber}
-                  required={true}
-                />
-              </div>
-              <div className="form-group">
-                <textarea id="form7" className="md-textarea form-control" rows={4}
-                  name="verse"
-                  onChange={this.onChangeVerseContext}
-                  value={this.state.verse_context}
-                  placeholder="Verse context"
-                />
-              </div>
-            </div>
-            
             <AddBibleWrapper onClickAdd={this.onAddBible} >
               {children}
             </AddBibleWrapper>
-
           </div>
           <div className="form-group" id="submit-question-container">
             <input type="submit" value="Add Question" className="btn btn-primary" id="submit" ref={this.stepInput}/>
@@ -250,4 +188,19 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
   }
 }
 
-export default AddQuestion
+const mapStateToProps = (state, props) => {
+  return {
+    questiondetails: state.questiondetails,
+    biblelist: state.biblelist
+  }
+}
+const mapDispatchToProps = (dispatch, props) => ({
+  startTagname: tagname => dispatch(startTagname(tagname)),
+  startQuestion: title => dispatch(startQuestion(title)),
+  startReference: reference => dispatch(startReference(reference))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddQuestion);
