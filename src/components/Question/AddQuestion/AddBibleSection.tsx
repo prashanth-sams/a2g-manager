@@ -1,8 +1,8 @@
 import * as React from 'react';
-import AddBibleSectionProps from '../../interfaces/AddBibleSectionProps.interface';
+import AddBibleSectionProps from '../../../interfaces/Question/AddBibleSectionProps.interface';
 import './_style.css'
 import { connect } from "react-redux";
-import { startAddBibleverse } from "../../actions/biblelist";
+import { startAddBibleverse } from "../../../actions/biblelist";
 
 export class AddBibleSection extends React.Component<any, AddBibleSectionProps> {
     constructor(props: AddBibleSectionProps){

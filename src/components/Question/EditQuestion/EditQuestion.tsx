@@ -1,5 +1,5 @@
 import * as React from 'react'
-import EditQuestionProps from '../../interfaces/EditQuestionProps.interface'
+import EditQuestionProps from '../../../interfaces/Question/EditQuestionProps.interface'
 import axios from 'axios';
 import './_style.css';
 import { RouteComponentProps } from 'react-router';

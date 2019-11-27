@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ListKeywordsProps from '../../interfaces/ListKeywordsProps.interface';
+import ListKeywordsProps from '../../interfaces/Keywords/ListKeywordsProps.interface';
 import axios from 'axios';
 import TableRow from './TableRow';
 import './_style.css';

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import EditKeywordsProps from '../../interfaces/EditKeywordsProps.interface'
+import EditKeywordsProps from '../../interfaces/Keywords/EditKeywordsProps.interface'
 import axios from 'axios';
 import './_style.css';
 import { RouteComponentProps } from 'react-router';
