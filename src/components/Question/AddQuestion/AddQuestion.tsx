@@ -152,14 +152,14 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
               />
             </div>
             <div className="form-group">
-                <input type="text" className="form-control"
-                  name="reference"
-                  placeholder="Reference ID [eg., jesus-10]"
-                  value={this.state.reference}
-                  onChange={this.onChangeReference}
-                  required={true}
-                />
-              </div>
+              <input type="text" className="form-control"
+                name="reference"
+                placeholder="Reference ID [eg., jesus-10]"
+                value={this.state.reference}
+                onChange={this.onChangeReference}
+                required={true}
+              />
+            </div>
           </div>
           <div className="bible-outer-container">
             <AddBibleWrapper onClickAdd={this.onAddBible} >
