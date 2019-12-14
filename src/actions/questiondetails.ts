@@ -15,6 +15,21 @@ export const addReference = reference => ({
   reference
 });
 
+export const editTagname = tagname => ({
+  // type: "ADD_TAGNAME",
+  // tagname
+});
+
+export const editQuestion = question => ({
+  // type: "ADD_QUESTION",
+  // question
+});
+
+export const editReference = reference => ({
+  // type: "ADD_REFERENCE",
+  // reference
+});
+
 export const startTagname = ( tagname ) => {
   return (dispatch, getState) => {
     const id = uuid();

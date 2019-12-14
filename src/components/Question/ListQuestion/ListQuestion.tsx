@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ListQuestionProps from '../../interfaces/ListQuestionProps.interface';
+import ListQuestionProps from '../../../interfaces/Question/ListQuestionProps.interface';
 import axios from 'axios';
 import TableRow from './TableRow';
 import './_style.css';
@@ -39,13 +39,13 @@ class ListQuestion extends React.Component<ListQuestionProps, ListQuestionState>
     public render() {
         return (
           <div>				
-            <h3 className="header-top">Verse List</h3>
+            <h3 className="header-top">List Questions</h3>
             <table className="table table-striped" style={{ marginTop: 20 }}>
               <thead>
                 <tr>
                   <th>ID</th>
                   <th>Tags</th>
-                  <th>Title</th>
+                  <th>Question</th>
                   <th colSpan={2}>Action</th>
                 </tr>
               </thead>

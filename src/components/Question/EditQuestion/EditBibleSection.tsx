@@ -1,11 +1,11 @@
 import * as React from 'react';
-import AddBibleSectionProps from '../../interfaces/AddBibleSectionProps.interface';
+import EditBibleSectionProps from '../../../interfaces/Question/EditBibleSectionProps.interface';
 import './_style.css'
 import { connect } from "react-redux";
-import { startAddBibleverse } from "../../actions/biblelist";
+import { startAddBibleverse, startEditBibleverse } from "../../../actions/biblelist";
 
-export class AddBibleSection extends React.Component<any, AddBibleSectionProps> {
-    constructor(props: AddBibleSectionProps){
+export class EditBibleSection extends React.Component<any, EditBibleSectionProps> {
+    constructor(props: EditBibleSectionProps){
         super(props);
 
         this.state = {
@@ -118,9 +118,10 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch, props) => ({
     startAddBibleverse: bibleverse => dispatch(startAddBibleverse(bibleverse)),
+    startEditBibleverse: bibleverse => dispatch(startEditBibleverse(bibleverse)),
 });
   
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(AddBibleSection);
+)(EditBibleSection);

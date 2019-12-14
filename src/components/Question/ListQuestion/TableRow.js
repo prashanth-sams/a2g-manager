@@ -49,10 +49,10 @@ class TableRow extends Component {
             {this.props.obj.title}
           </td>
           <td>
-            <Link to={"/edit/question/"+this.props.obj._id} className="btn btn-primary">Edit</Link>
+            <Link to={"/edit/question/"+this.props.obj._id} className="btn btn-primary" id="edit-row" ><i className="fa fa-pencil" /></Link>
           </td>
           <td>
-            <button onClick={this.delete} className="btn btn-danger">Delete</button>
+            <button onClick={this.delete} className="btn btn-danger"><i className="fa fa-trash" /></button>
           </td>
         </tr>
     );

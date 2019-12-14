@@ -1,12 +1,12 @@
 import * as React from 'react';
-import AddQuestionProps from '../../interfaces/AddQuestionProps.interface';
+import AddQuestionProps from '../../../interfaces/Question/AddQuestionProps.interface';
 import Select, { components } from 'react-select';
 import axios from 'axios';
 import { colourOptions } from './data';
 import './_style.css';
 import AddBibleSection from './AddBibleSection';
 import { connect } from "react-redux";
-import { startTagname, startQuestion, startReference } from "../../actions/questiondetails";
+import { startTagname, startQuestion, startReference } from "../../../actions/questiondetails";
 
 const AddBibleWrapper = (props) => (
   <div>
@@ -24,11 +24,6 @@ interface AddQuestionState {
   tag_name: string[],
   title: string,
   reference: string,
-  bible: [],
-  book_name : string,
-  chapter_number: null,
-  verse_number: string,
-  verse_context: string,
   bible_count: number
 }
 
@@ -46,11 +41,6 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
       tag_name : [],
       title : '',
       reference : '',
-      bible: [],
-      book_name : '',
-      chapter_number: null,
-      verse_number: '',
-      verse_context: '',
       bible_count: 0
     };
     
@@ -77,8 +67,6 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
   }
 
   public onSubmit = (e) => {
-    e.preventDefault();
-
     const obj = {
       tag_name : this.props.questiondetails.tagname.tagname,
       title : this.props.questiondetails.question.title,
@@ -93,7 +81,6 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
           return;
         }
         console.log(res.data)
-        alert('added question!')
 			});
   }
 
@@ -165,14 +152,14 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
               />
             </div>
             <div className="form-group">
-                <input type="text" className="form-control"
-                  name="reference"
-                  placeholder="Reference ID [eg., jesus-10]"
-                  value={this.state.reference}
-                  onChange={this.onChangeReference}
-                  required={true}
-                />
-              </div>
+              <input type="text" className="form-control"
+                name="reference"
+                placeholder="Reference ID [eg., jesus-10]"
+                value={this.state.reference}
+                onChange={this.onChangeReference}
+                required={true}
+              />
+            </div>
           </div>
           <div className="bible-outer-container">
             <AddBibleWrapper onClickAdd={this.onAddBible} >

@@ -1,0 +1,14 @@
+.header-top {
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+#edit-row {
+    background-color: #5243AA;
+    border-color: #5243AA;
+}
+
+#edit-row:hover {
+    background-color: #3a2e80;
+    background-color: #3a2e80;
+}
