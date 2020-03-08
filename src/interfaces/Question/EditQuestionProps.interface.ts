@@ -1,18 +1,20 @@
 export default interface EditQuestionProps{
+    error: boolean,
     tag_name: string[],
     book_name: string,
+    title: string,
+    answer: string,
+    lang: string,
     chapter_number?: number,
     verse_number: string,
     verse_context: string,
     startTagname: any,
     startQuestion: any,
+    startAnswer: any,
     startReference: any,
-    editTagname: any,
-    editQuestion: any,
-    editReference: any,
     startAddBibleverse: any,
     startPostAddBibleverse: any,
-    startEditBibleverse: any,
     questiondetails: any,
-    biblelist: any
+    biblelist: any,
+    init_tag_name: any
 }

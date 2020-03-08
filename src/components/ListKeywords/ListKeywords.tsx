@@ -16,7 +16,7 @@ class ListKeywords extends React.Component<ListKeywordsProps, ListKeywordsState>
     }
 
     public componentDidMount = () => {
-      axios.get('http://localhost:4000/keywords')
+      axios.get('http://localhost:4000/en/keywords')
         .then(response =>{
           this.setState({manager: response.data});
         })
@@ -38,8 +38,8 @@ class ListKeywords extends React.Component<ListKeywordsProps, ListKeywordsState>
 
     public render() {
         return (
-          <div>				
-            <h3 className="header-top">Verse List</h3>
+          <div>
+            <h3 className="header-top"><i className="fa fa-list" /> Keywords List</h3>
             <table className="table table-striped" style={{ marginTop: 20 }}>
               <thead>
                 <tr>

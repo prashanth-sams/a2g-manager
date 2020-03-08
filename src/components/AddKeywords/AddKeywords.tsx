@@ -30,7 +30,7 @@ export class AddKeywords extends React.Component<AddKeywordsProps, AddKeywordsSt
 			verse_number: '',
 			verse_context: ''
     };
-    axios.defaults.baseURL = 'http://localhost:4000/keywords';
+    axios.defaults.baseURL = 'http://localhost:4000/en/keywords';
   }
 
   public onSubmit = () => {
@@ -98,10 +98,9 @@ export class AddKeywords extends React.Component<AddKeywordsProps, AddKeywordsSt
 	}
 
   public render() {
-    // const {tag_name, book_name} = this.props;
     return (
-      <div style={{marginTop: 10}}>
-        <h3 className="header-top">Bible Keywords</h3>
+      <div style={{marginTop: 10, marginRight: '50%'}}>
+        <h3 className="header-top"><i className="fa fa-plus" /> Bible Keywords</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group" style={{ fontSize: '0.9rem' }}>
             <Select
@@ -144,7 +143,7 @@ export class AddKeywords extends React.Component<AddKeywordsProps, AddKeywordsSt
             />
           </div>
           <div className="form-group">
-            <input type="text" className="form-control"
+            <textarea id="form7" className="md-textarea form-control" rows={2}
               name="verse"
               placeholder="Verse context"
               value={this.state.verse_context}
@@ -153,7 +152,7 @@ export class AddKeywords extends React.Component<AddKeywordsProps, AddKeywordsSt
             />
           </div>
           <div className="form-group">
-            <input type="submit" value="Add Verse" className="btn btn-primary" id="submit"/>
+            <button type="submit" value="Add Verse" className="btn btn-primary" id="submit">Save <i className="fa fa-save"/></button>
           </div>
         </form>
       </div>

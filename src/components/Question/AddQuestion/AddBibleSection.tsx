@@ -54,10 +54,6 @@ export class AddBibleSection extends React.Component<any, AddBibleSectionProps> 
         this.props.startRemoveBibleverse(id);
     }
 
-    public onEditVerse = (bibleverse) => {
-        this.props.startEditBibleverse(bibleverse);
-    }
-
     public render() {
         return (
             <div>

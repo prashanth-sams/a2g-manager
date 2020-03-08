@@ -25,7 +25,7 @@ export class EditKeywords extends React.Component<EditKeywordsProps & RouteCompo
       verse_number: '',
       verse_context: ''
     };
-    axios.defaults.baseURL = 'http://localhost:4000/keywords';
+    axios.defaults.baseURL = 'http://localhost:4000/en/keywords';
   }
 
   public componentDidMount = () => {
@@ -87,17 +87,17 @@ export class EditKeywords extends React.Component<EditKeywordsProps & RouteCompo
     axios.post('/update/'+(this.props.match.params as any).id, obj)
         .then(res => console.log(res.data));
 
-    this.props.history.push('/list/keywords');
+    this.props.history.push('/en/list/keywords');
   }
 
 
   public render() {
     return (
-      <div style={{ marginTop: 10 }}>
-        <h3 className="header-top">Update Verse</h3>
+      <div style={{marginTop: 10, marginRight: '50%'}}>
+        <h3 className="header-top"><i className="fa fa-pencil" /> Update Keyword</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
-            <label>Tags: </label>
+            <label style={{ fontSize: '0.9rem', color: '#5243AA' }}>Tags: </label>
             <input type="text" className="form-control" 
               name="tags" 
               value={this.state.tag_name} 
@@ -105,7 +105,7 @@ export class EditKeywords extends React.Component<EditKeywordsProps & RouteCompo
             />
           </div>
           <div className="form-group">
-            <label>Book: </label>
+            <label style={{ fontSize: '0.9rem', color: '#5243AA' }}>Book: </label>
             <input type="text" className="form-control" 
               name="book" 
               value={this.state.book_name} 
@@ -113,7 +113,7 @@ export class EditKeywords extends React.Component<EditKeywordsProps & RouteCompo
             />
           </div>
           <div className="form-group">
-            <label>Chapter: </label>
+            <label style={{ fontSize: '0.9rem', color: '#5243AA' }}>Chapter: </label>
             <input type="text" className="form-control" 
               name="chapter" 
               value={this.state.chapter_number} 
@@ -121,7 +121,7 @@ export class EditKeywords extends React.Component<EditKeywordsProps & RouteCompo
             />
           </div>
           <div className="form-group">
-            <label>Verse number: </label>
+            <label style={{ fontSize: '0.9rem', color: '#5243AA' }}>Verse number: </label>
             <input type="text" className="form-control" 
               name="verse number" 
               value={this.state.verse_number} 
@@ -129,15 +129,15 @@ export class EditKeywords extends React.Component<EditKeywordsProps & RouteCompo
             />
           </div>
           <div className="form-group">
-            <label>Verse: </label>
-            <input type="text" className="form-control" 
+            <label style={{ fontSize: '0.9rem', color: '#5243AA' }}>Verse: </label>
+            <textarea id="form7" className="md-textarea form-control" rows={2}
               name="verse" 
               value={this.state.verse_context} 
               onChange={this.onChangeVerseContext} 
             />
           </div>
           <div className="form-group">
-            <input type="submit" value="Update Verse" className="btn btn-primary" id="submit"/>
+            <button type="submit" value="Update Verse" className="btn btn-primary" id="submit">Save <i className="fa fa-save"/></button>
           </div>
         </form>
       </div>
