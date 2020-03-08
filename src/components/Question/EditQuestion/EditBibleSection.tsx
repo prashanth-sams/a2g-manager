@@ -2,7 +2,8 @@ import * as React from 'react';
 import EditBibleSectionProps from '../../../interfaces/Question/EditBibleSectionProps.interface';
 import './_style.css'
 import { connect } from "react-redux";
-import { startAddBibleverse, startEditBibleverse } from "../../../actions/biblelist";
+import { startAddBibleverse } from "../../../actions/biblelist";
+import axios from 'axios';
 
 export class EditBibleSection extends React.Component<any, EditBibleSectionProps> {
     constructor(props: EditBibleSectionProps){
@@ -51,11 +52,12 @@ export class EditBibleSection extends React.Component<any, EditBibleSectionProps
     }
     
     public onDeleteVerse = (id) => {
-        this.props.startRemoveBibleverse(id);
-    }
-
-    public onEditVerse = (bibleverse) => {
-        this.props.startEditBibleverse(bibleverse);
+        // this.props.startRemoveBibleverse(id);
+        axios.get(`/delete/bibleverse/${this.props.parentid}/${this.props.obj._id}`)
+            .then(res => {
+                this.props.delete(this.props.indice);
+            })
+            .catch(err => console.log(err))
     }
 
     public render() {
@@ -118,7 +120,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch, props) => ({
     startAddBibleverse: bibleverse => dispatch(startAddBibleverse(bibleverse)),
-    startEditBibleverse: bibleverse => dispatch(startEditBibleverse(bibleverse)),
+    // startEditBibleverse: bibleverse => dispatch(startEditBibleverse(bibleverse)),
 });
   
 export default connect(

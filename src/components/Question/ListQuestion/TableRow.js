@@ -19,12 +19,10 @@ export const Ellipsis = styled.td`
 class TableRow extends Component {
 
   constructor(props){
-    console.log('props',props);
-
     super(props);
     this.delete = this.delete.bind(this);
     
-    axios.defaults.baseURL = 'http://localhost:4000/question';
+    axios.defaults.baseURL = 'http://localhost:4000/en/question';
   }
 
   delete(){
@@ -49,7 +47,7 @@ class TableRow extends Component {
             {this.props.obj.title}
           </td>
           <td>
-            <Link to={"/edit/question/"+this.props.obj._id} className="btn btn-primary" id="edit-row" ><i className="fa fa-pencil" /></Link>
+            <Link to={"/en/edit/question/"+this.props.obj._id} className="btn btn-primary" id="edit-row" ><i className="fa fa-pencil" /></Link>
           </td>
           <td>
             <button onClick={this.delete} className="btn btn-danger"><i className="fa fa-trash" /></button>

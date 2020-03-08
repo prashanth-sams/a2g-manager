@@ -6,7 +6,7 @@ import { colourOptions } from './data';
 import './_style.css';
 import AddBibleSection from './AddBibleSection';
 import { connect } from "react-redux";
-import { startTagname, startQuestion, startReference } from "../../../actions/questiondetails";
+import { startTagname, startQuestion, startAnswer, startReference } from "../../../actions/questiondetails";
 
 const AddBibleWrapper = (props) => (
   <div>
@@ -21,8 +21,10 @@ const AddBibleWrapper = (props) => (
 
 interface AddQuestionState {
   error: boolean,
+  lang: string,
   tag_name: string[],
   title: string,
+  answer: string,
   reference: string,
   bible_count: number
 }
@@ -38,15 +40,18 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
 
     this.state = {
       error: false,
+      lang: 'en',
       tag_name : [],
       title : '',
+      answer: '',
       reference : '',
       bible_count: 0
     };
     
     this.stepInput = React.createRef();
 
-    axios.defaults.baseURL = 'http://localhost:4000/question';
+    const language = this.state.lang; // read from URL current language
+    axios.defaults.baseURL = `http://localhost:4000/${language}/question`;
   }
   
   public onAddBible = (e) => {    
@@ -57,6 +62,7 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
   
   public componentDidMount = () => {
     this.stepInput.current.focus();
+    // this.state.lang = window.location.href;
   }
 
   public componentDidUpdate = () => {
@@ -67,13 +73,17 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
   }
 
   public onSubmit = (e) => {
+    
     const obj = {
       tag_name : this.props.questiondetails.tagname.tagname,
       title : this.props.questiondetails.question.title,
+      answer : this.props.questiondetails.answer.answer,
       reference : this.props.questiondetails.reference.reference,
-      bible : this.props.biblelist
+      lang : this.state.lang,
+      bible : this.props.biblelist      
     };
     
+    console.log(obj);
     axios.post('/add', obj)
 			.then( res=> {
         if(res.status !== 200) {
@@ -111,6 +121,13 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
     this.props.startQuestion(e.target.value);
   }
 
+  public onChangeAnswer = (e) => {
+		this.setState({
+			answer : e.target.value
+    });
+    this.props.startAnswer(e.target.value);
+  }
+
   public onChangeReference = (e) => {
 		this.setState({
 			reference : e.target.value
@@ -127,7 +144,7 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
 
     return (
       <div style={{marginTop: 10}}>
-        <h3 className="header-top">Bible Question</h3>
+        <h3 className="header-top" id="question-top"><i className="fa fa-plus" /> Bible Question</h3>
         <form onSubmit={this.onSubmit}>
           <div className="question-top-container">
             <div className="form-group" style={{ fontSize: '0.9rem' }}>
@@ -152,6 +169,14 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
               />
             </div>
             <div className="form-group">
+              <textarea id="form7" className="md-textarea form-control" rows={2}
+                name="answer"
+                value={this.state.answer}
+                onChange={this.onChangeAnswer}
+                placeholder="Answer [eg., Jesus is the image of the invisible God]"
+              />
+            </div>
+            <div className="form-group">
               <input type="text" className="form-control"
                 name="reference"
                 placeholder="Reference ID [eg., jesus-10]"
@@ -167,7 +192,7 @@ export class AddQuestion extends React.Component<AddQuestionProps, AddQuestionSt
             </AddBibleWrapper>
           </div>
           <div className="form-group" id="submit-question-container">
-            <input type="submit" value="Add Question" className="btn btn-primary" id="submit" ref={this.stepInput}/>
+            <button type="submit" value="Add Question" className="btn btn-primary" id="submit" ref={this.stepInput}>Save <i className="fa fa-save"/></button>
           </div>
         </form>
       </div>
@@ -184,6 +209,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch, props) => ({
   startTagname: tagname => dispatch(startTagname(tagname)),
   startQuestion: title => dispatch(startQuestion(title)),
+  startAnswer: answer => dispatch(startAnswer(answer)),
   startReference: reference => dispatch(startReference(reference))
 });
 

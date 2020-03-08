@@ -5,18 +5,23 @@ import TableRow from './TableRow';
 import './_style.css';
 
 interface ListQuestionState {
-    manager: string[];
+  lang: string,
+  manager: string[];
 }
 
 class ListQuestion extends React.Component<ListQuestionProps, ListQuestionState> {
 
     constructor(props: ListQuestionProps) {
         super(props);
-        this.state = {manager: []};
+        this.state = {
+          lang: 'en',
+          manager: []
+        };
     }
 
     public componentDidMount = () => {
-      axios.get('http://localhost:4000/question')
+      const language = this.state.lang; // read from URL current language
+      axios.get(`http://localhost:4000/${language}/question`)
         .then(response =>{
           this.setState({manager: response.data});
         })
@@ -39,7 +44,7 @@ class ListQuestion extends React.Component<ListQuestionProps, ListQuestionState>
     public render() {
         return (
           <div>				
-            <h3 className="header-top">List Questions</h3>
+            <h3 className="header-top"><i className="fa fa-list" /> List Questions</h3>
             <table className="table table-striped" style={{ marginTop: 20 }}>
               <thead>
                 <tr>
