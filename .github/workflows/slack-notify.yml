@@ -1,2 +1,12 @@
-- name: Slack Notify
-  uses: rtCamp/action-slack-notify@v1.0.0
+on: push
+name: A2G GitHub Notification
+jobs:
+  slackNotification:
+    name: Slack Notification
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Slack Notification
+      uses: rtCamp/action-slack-notify@v2.0.0
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
