@@ -27,7 +27,6 @@ export class AddKeywords extends React.Component<AddRevelationProps, AddRevelati
   }
 
   public onSubmit = () => {
-    debugger
     console.log(`The values are ${this.state.name}, ${this.state.start}, ${this.state.end}, ${this.state.url}, ${this.state.body}, and ${this.state.image}`)
     
     const obj = {

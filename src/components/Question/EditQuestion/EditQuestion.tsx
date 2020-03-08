@@ -144,7 +144,6 @@ export class EditQuestion extends React.Component<EditQuestionProps & RouteCompo
       bible : this.props.biblelist      
     };
     
-    debugger;
     console.log(obj);
     axios.post('/update/'+(this.props.match.params as any).id, obj)
 			.then( res=> {
