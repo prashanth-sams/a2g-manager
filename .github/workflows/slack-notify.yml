@@ -1,8 +1,8 @@
 on: push
-name: A2G GitHub Notification
+name: slack-notification
 jobs:
   slackNotification:
-    name: Slack Notification
+    name: A2G Slack Notification
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
