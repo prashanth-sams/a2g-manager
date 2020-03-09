@@ -1,5 +1,5 @@
 on: pull_request
-name: A2G GitHub Notification
+name: A2G PR Notification
 jobs:
   slackNotification:
     name: Slack Notification
