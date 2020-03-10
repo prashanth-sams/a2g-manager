@@ -1,0 +1,18 @@
+name: Docker Image CI
+
+on: [push]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image and publish to github packages
+      run: |
+        VERSION=$(date +%s)
+        docker build . --file Dockerfile --tag docker.pkg.github.com/prashanth-sams/a2g-manager/app:${VERSION}
+        docker login docker.pkg.github.com --username prashanth-sams --password ${{ secrets.GITHUB_TOKEN }}
+        docker push docker.pkg.github.com/prashanth-sams/a2g-manager/app:${VERSION}
