@@ -16,7 +16,7 @@ class ListKeywords extends React.Component<ListKeywordsProps, ListKeywordsState>
     }
 
     public componentDidMount = () => {
-      axios.get('http://localhost:4000/en/keywords')
+      axios.get('http://localhost:4000/keywords')
         .then(response =>{
           this.setState({manager: response.data});
         })
