@@ -8,7 +8,7 @@ interface ListKeywordsState {
     manager: string[];
 }
 
-class ListKeywords extends React.Component<ListKeywordsProps, ListKeywordsState> {
+class ListKeywords extends React.Component<any, ListKeywordsState> {
 
     constructor(props: ListKeywordsProps) {
         super(props);

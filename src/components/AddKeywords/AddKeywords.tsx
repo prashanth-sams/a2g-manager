@@ -18,7 +18,7 @@ const MultiValueLabel = (props) => {
 	return (<components.MultiValueLabel {...props}/>);
 };
 
-export class AddKeywords extends React.Component<AddKeywordsProps, AddKeywordsState> {
+export class AddKeywords extends React.Component<any, AddKeywordsState> {
   constructor(props: AddKeywordsProps) {
     super(props);
 
