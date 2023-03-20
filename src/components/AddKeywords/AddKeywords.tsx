@@ -18,7 +18,7 @@ const MultiValueLabel = (props) => {
 	return (<components.MultiValueLabel {...props}/>);
 };
 
-export class AddKeywords extends React.Component<AddKeywordsProps, AddKeywordsState> {
+export class AddKeywords extends React.Component<any, AddKeywordsState> {
   constructor(props: AddKeywordsProps) {
     super(props);
 
@@ -30,7 +30,7 @@ export class AddKeywords extends React.Component<AddKeywordsProps, AddKeywordsSt
 			verse_number: '',
 			verse_context: ''
     };
-    axios.defaults.baseURL = 'http://localhost:4000/en/keywords';
+    axios.defaults.baseURL = 'http://localhost:4000/keywords';
   }
 
   public onSubmit = () => {

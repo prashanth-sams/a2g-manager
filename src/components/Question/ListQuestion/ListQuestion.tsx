@@ -9,7 +9,7 @@ interface ListQuestionState {
   manager: string[];
 }
 
-class ListQuestion extends React.Component<ListQuestionProps, ListQuestionState> {
+class ListQuestion extends React.Component<any, ListQuestionState> {
 
     constructor(props: ListQuestionProps) {
         super(props);

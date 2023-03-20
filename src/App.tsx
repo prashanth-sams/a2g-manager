@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './App.css';
 import './css/mobile.css';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './components/Home/Home';
 import AddKeywords from './components/AddKeywords/AddKeywords';
@@ -27,7 +27,6 @@ class App extends React.Component<AppProps, AppState> {
   }
 
   public componentDidMount = () => {
-    debugger
     if (window.location.pathname.substring(1, 3) === '') {
       this.state = {
         lang: 'en'
@@ -54,7 +53,7 @@ class App extends React.Component<AppProps, AppState> {
               <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto" id="header">
                   <li className="nav-item">
-                    <Link to={`/${this.state.lang}/add/keywords`} className="nav-link" id="add">
+                    <Link to={'/add/keywords'} className="nav-link" id="add">
                       <i className="fa fa-plus"/>
                       <span style={{ fontSize: '0.87rem' }}> Keywords</span>
                     </Link>
@@ -97,17 +96,17 @@ class App extends React.Component<AppProps, AppState> {
               </div>
             </nav>
             <br/>
-            <Switch>
-              <Route exact={true} path='/' component={Home} />
-              <Route path='/en/add/keywords' component={ AddKeywords } />
-              <Route path='/en/edit/keywords/:id' component={ EditKeywords } />
-              <Route path='/en/list/keywords' component={ ListKeywords } />
-              <Route path='/en/add/question' component={ AddQuestion } />
-              <Route path='/en/edit/question/:id' component={ EditQuestion } />
-              <Route path='/en/list/question' component={ ListQuestion } />
+            <Routes>
+              <Route path='/' element={<Home/>} />
+              <Route path='/add/keywords' element={ <AddKeywords/> } />
+              <Route path='/en/edit/keywords/:id' element={ <EditKeywords/> } />
+              <Route path='/en/list/keywords' element={<ListKeywords/> } />
+              <Route path='/en/add/question' element={ <AddQuestion/> } />
+              <Route path='/en/edit/question/:id' element={ <EditQuestion/> } />
+              <Route path='/en/list/question' element={ <ListQuestion/> } />
               {/* <Route path='/add/revelation' component={ AddRevelation } /> */}
-              <Route component={ PageNotFound } />
-            </Switch>
+              <Route element={ <PageNotFound/> } />
+            </Routes>
           </div>
         </Router>
     );

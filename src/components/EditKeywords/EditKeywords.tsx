@@ -13,7 +13,7 @@ interface EditKeywordsState {
   verse_context: string
 }
 
-export class EditKeywords extends React.Component<EditKeywordsProps & RouteComponentProps, EditKeywordsState> {
+export class EditKeywords extends React.Component<any, EditKeywordsState> {
   constructor(props: EditKeywordsProps & RouteComponentProps) {
     super(props);
 
