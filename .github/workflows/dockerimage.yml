@@ -1,18 +1,23 @@
-name: Docker Image CI
+name: A2G Manager CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - "develop"
+  workflow_dispatch:
 
 jobs:
 
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image and publish to github packages
+    - name: Build the Docker image and publish to DockerHub
       run: |
         VERSION=$(date +%s)
-        docker build . --file Dockerfile --tag docker.pkg.github.com/prashanth-sams/a2g-manager/app:${VERSION}
-        docker login docker.pkg.github.com --username prashanth-sams --password ${{ secrets.GITHUB_TOKEN }}
-        docker push docker.pkg.github.com/prashanth-sams/a2g-manager/app:${VERSION}
+        docker build -t prashanthsams/a2g-manager:$VERSION .
+        docker tag prashanthsams/a2g-manager:$VERSION prashanthsams/a2g-manager:latest
+        echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+        docker push prashanthsams/a2g-manager:$VERSION
+        docker push prashanthsams/a2g-manager:latest
